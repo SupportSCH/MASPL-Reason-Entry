@@ -1,0 +1,48 @@
+<!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="line-scale-pulse-out"></ngx-spinner> -->
+
+
+<div (window:resize)="onResize($event)"></div>
+<mat-grid-list [cols]="calcGridColumns()" rowHeight="2:2" gutterSize="10px">
+  <mat-grid-tile *ngFor="let reason of service.Reasons" (click)="activeThisCard(reason.reason_code, reason.reason_code_desc)">
+
+    <mat-card *ngIf="reason.reason_code != service.ActiveReasonCard">
+      <mat-card-content>
+        <p>
+          <mat-icon>{{ reason.icon_reason}}</mat-icon>
+        </p>
+        {{ reason.reason_code_desc }}
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="active_card" *ngIf="reason.reason_code == service.ActiveReasonCard">
+      <mat-card-content>
+        <p>
+          <mat-icon>{{ reason.icon_reason}}</mat-icon>
+        </p>
+        {{ reason.reason_code_desc }}
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div class="fab-container">
+  <button mat-fab class="fab-toggler" (click)="onToggleFab()" class="fab-button">
+    <i class="material-icons">notes</i>
+  </button>
+
+  <div *ngIf="fabTogglerState == 'active'">
+
+    <button (click)="openAddDialog()" mat-fab class="fab-secondary" class="done">
+      <i class="material-icons">done</i>
+    </button>
+
+    <button (click)="openEditDialog()" mat-fab class="fab-secondary" class="edit">
+      <i class="material-icons">edit</i>
+    </button>
+
+    <button (click)="openDeleteDialog()" mat-fab class="fab-secondary" class="delete">
+      <i class="material-icons">delete</i>
+    </button>
+  </div>
+</div>

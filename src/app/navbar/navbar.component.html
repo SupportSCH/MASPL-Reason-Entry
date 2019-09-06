@@ -1,0 +1,67 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="line-scale-pulse-out"></ngx-spinner>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar class="fixed-toolbar">Idle Periods 
+      <button mat-fab class="filter" (click)="onFilterDialog()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+
+      <span style="width: 27%;"></span>
+
+      <mat-icon class="refresh" (click)="refresh()">refresh</mat-icon>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <div *ngFor="let IdleTime of service.IdleTime">
+        <div mat-list-item class="list-item" *ngIf="IdleTime.idle_code != service.ActiveIdleTime" (click)="fetchIdleReason(IdleTime.idle_code)">
+          <p class="bold">{{ service.fullDateToDateConversion(IdleTime.start_time) }}</p>
+          <p class="list-item-alignment font-size-15">Start Time:
+            {{service.fullDateToTimeConversion(IdleTime.start_time)}}</p>
+          <p class="list-item-alignment font-size-15">Idle Time :
+            {{service.timeDifferenceCalculation(IdleTime.start_time, IdleTime.end_time)}}</p>
+          <p class="list-item-alignment font-size-15 bold" *ngIf="IdleTime.join.reason_code_desc != 'Reason Unavailable'">{{IdleTime.join.reason_code_desc}}</p>
+          <p class="list-item-alignment font-size-15 bold red" *ngIf="IdleTime.join.reason_code_desc == 'Reason Unavailable'">{{IdleTime.join.reason_code_desc}}</p>
+        </div>
+
+        <div mat-list-item class="list-item list-item-active" *ngIf="IdleTime.idle_code == service.ActiveIdleTime"
+          (click)="activeThisItem(IdleTime.idle_code)">
+          <p class="bold">{{ service.fullDateToDateConversion(IdleTime.start_time) }}</p>
+          <p class="list-item-alignment font-size-15">Start Time:
+            {{service.fullDateToTimeConversion(IdleTime.start_time)}}</p>
+          <p class="list-item-alignment font-size-15">Idle Time :
+            {{service.timeDifferenceCalculation(IdleTime.start_time, IdleTime.end_time)}}</p>
+            
+          <p class="list-item-alignment font-size-15 bold">{{IdleTime.join.reason_code_desc}}</p>
+        </div>
+      </div>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <!-- <span>MASPL</span> -->
+      <img src="assets/MAS.png" height="30" weight="200">
+
+      <span style="width: 70%;"></span>
+
+      <img src="assets/SCH.png" style="margin-right:20px;" height="40">
+
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <div class="container">
+      <app-reasons></app-reasons>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

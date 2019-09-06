@@ -1,0 +1,102 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 220px;
+  top: 62px !important;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+// For Mat tool bar Fixed
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+// ToolBar
+.mat-toolbar {
+  background-color: #fff ;
+  color: #303030;
+  box-shadow: 4px -3px 13px 0px #a7afbf;
+}
+
+// For Fixed Toolbar
+.fixed-toolbar {
+  margin-top: -62px;
+  position: fixed;
+}
+
+// SideBar Background
+.mat-drawer {
+  background-color: #fff ;
+  color: #303030 ;
+  box-shadow: 2px 5px 2px 0px rgb(232, 228, 224);
+}
+
+// Content Background Container
+.mat-drawer-container {
+  background-color: #fff;
+  color: #303030 ;
+}
+
+// SideBar List
+.mat-list-base .mat-list-item {
+  color: #303030;
+  padding: 10px;
+}
+
+//For Container
+.container {
+  margin: 20px;
+}
+
+// For Idle Time List hovering
+.list-item:hover {
+  background: linear-gradient(to top, #ecca6b, #ecd991);
+}
+
+// For padding of List 
+.list-item {
+  padding: 1px;
+  padding-left: 11px;
+}
+
+// For List Item Alignment
+.list-item-alignment {
+  margin-top: -10px;
+}
+
+// For Making the Font bold
+.bold {
+  font-weight: bold;
+}
+
+// For making the font size as 15px
+.font-size-15 {
+  font-size: 15px;
+}
+
+// For Active Idle Time list Item
+.list-item-active {
+  background: linear-gradient(to top, #89b9e8, #93c4ef)
+}
+
+//For Filter
+.filter {
+  margin-top: 55px;
+}
+
+// For Refresh Button in the Navbar
+.refresh {
+  font-size: 35px; 
+  color: #4288d0;
+}
+
+.red {
+  color: red !important;
+}

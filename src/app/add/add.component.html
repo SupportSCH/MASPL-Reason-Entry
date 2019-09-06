@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Confirm</h1>
+
+<div mat-dialog-content>
+<p>Start Time   : {{ this.service.ActiveIdleAndReason.start_time }}</p>
+<p>End Time     : {{ this.service.ActiveIdleAndReason.end_time }}</p>
+<p>Idle Reason  : {{ this.service.ActiveReasonCardDescription }}</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="putReasonToIdleTime()">OK</button>
+</div>

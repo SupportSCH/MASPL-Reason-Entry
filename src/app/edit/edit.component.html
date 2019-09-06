@@ -1,0 +1,26 @@
+<div mat-dialog-header>
+  <h1 mat-dialog-title>Edit Idle End Time</h1>
+</div>
+
+<div mat-dialog-content>
+
+  <form class="editForm">
+
+      <mat-form-field>
+          <input type="time" matInput placeholder="Start Time" [(ngModel)]="IdleTime.start_time" [ngModelOptions]="{standalone: true}"
+              step="2" value="" disabled>
+      </mat-form-field>
+
+      <mat-form-field>
+          <input type="time" matInput placeholder="End Time"  [(ngModel)]="IdleTime.end_time" [min]="IdleTime.start_time" [max]="IdleTime.new_end_time" [ngModelOptions]="{standalone: true}"
+              step="2" value="" required>
+      </mat-form-field>
+
+  </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="editIdleTime()">submit</button>
+</div>
